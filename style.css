@@ -1,0 +1,25 @@
+:root{--ice:#cfe9e6;--red:#c4302b;--void:#050808}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+html,body{height:100%;background:#000;overflow:hidden}
+.bg{position:fixed;inset:0;background-size:cover;background-position:center;image-rendering:pixelated}
+.bg::after{content:"";position:absolute;inset:0;pointer-events:none;
+ background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px),
+ radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55))}
+#mesh{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;opacity:.55}
+.bg~#mesh{opacity:.25}
+/* intro */
+body.intro{background:var(--void);cursor:pointer}
+.shard{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);padding:40px 72px;
+ background:rgba(3,6,6,.88);color:var(--ice);font:700 clamp(22px,4.5vw,46px)/1 "Courier New",monospace;
+ letter-spacing:.22em;white-space:nowrap;
+ clip-path:polygon(0 14%,7% 0,61% 7%,100% 0,95% 55%,100% 100%,38% 91%,12% 100%,3% 60%);
+ animation:jit 4s steps(1) infinite}
+.shard::before{content:"";position:absolute;inset:0;background:var(--red);z-index:-1;
+ clip-path:polygon(0 0,100% 0,100% 100%,0 100%);opacity:.0}
+@keyframes jit{0%,90%,100%{transform:translate(-50%,-50%)}92%{transform:translate(-49%,-51%) skewX(-5deg)}
+ 95%{transform:translate(-51%,-49%) skewX(3deg)}97%{transform:translate(-50%,-50%) scaleX(1.03)}}
+/* morse nudge */
+.nudge{position:fixed;right:22px;bottom:22px;width:18px;height:18px;background:var(--ice);
+ clip-path:polygon(0 0,100% 50%,0 100%);opacity:0;animation:nd 2.4s steps(2) infinite}
+@keyframes nd{50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){.shard,.nudge{animation:none}}
